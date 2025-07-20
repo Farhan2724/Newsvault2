@@ -1,14 +1,28 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "main.py",
+      "src": "api/main.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "api/main.py"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/main.py"
+      "dest": "/api/main.py"
     }
-  ]
+  ],
+  "env": {
+    "NEWS_API_KEY": "22f81c0197e64492bf315151d86fcd01",
+    "GROQ_API_KEY": "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"
+  },
+  "functions": {
+    "api/main.py": {
+      "maxDuration": 30
+    }
+  }
 }
