@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import List, Dict, Any
 import os
 from dotenv import load_dotenv
+import uvicorn
 
 # Import your existing modules
 from user_profile import UserProfile, UserProfileManager
@@ -40,7 +41,7 @@ async def get_questionnaire():
 async def create_profile(profile_data: ProfileCreationRequest):
     try:
         profile = questionnaire.create_profile_from_responses(
-            profile_data.user_id, 
+            profile_data.user_id,
             profile_data.responses
         )
         return {"success": True, "profile": profile.to_dict()}
@@ -59,10 +60,16 @@ async def get_personalized_news(user_id: str):
     profile = profile_manager.get_profile(user_id)
     if not profile:
         raise HTTPException(status_code=404, detail="Profile not found")
-    
+
     try:
         news_crew = NewsAICrew(profile)
         result = news_crew.generate_news_digest()
         return {"success": True, "news_digest": result}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Error generating news digest: {e}") # Added for better logging
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
+
+# This block allows Render to run the app.
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
