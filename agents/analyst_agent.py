@@ -1,6 +1,6 @@
-from crewai import Agent
+from crewai import Agent # Corrected import
+from llm import llm
 from tools.stock_research_tool import get_stock_price
-from llm import llm # Import the centralized llm instance
 
 analyst_agent = Agent(
     role="Financial Market Analyst",
@@ -11,6 +11,5 @@ analyst_agent = Agent(
                  "stock performance using live market indicators."),
     llm=llm,
     tools=[get_stock_price],
-    verbose=True,
-    allow_delegation=False
+    verbose=True
 )
