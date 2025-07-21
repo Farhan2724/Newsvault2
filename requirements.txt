@@ -9,14 +9,14 @@ python-dotenv==1.0.1
 requests==2.32.3
 python-multipart==0.0.9
 
-# CrewAI and LangChain Ecosystem
+# CrewAI and LangChain Ecosystem (Downgraded to resolve conflict)
 crewai==0.35.8
 crewai-tools==0.3.0
-langchain==0.2.1
-langchain-core==0.2.3
-langchain-community==0.2.1
+langchain==0.1.20
+langchain-core==0.1.52
+langchain-community==0.0.38
 langchain-groq==0.1.5
-langchain-text-splitters==0.2.0
+langchain-text-splitters==0.0.1
 langsmith==0.1.57
 
 # Finance Tool
