@@ -9,7 +9,7 @@ python-dotenv==1.0.1
 requests==2.32.3
 python-multipart==0.0.9
 
-# CrewAI and LangChain Ecosystem (Downgraded to resolve conflict)
+# CrewAI and LangChain Ecosystem
 crewai==0.35.8
 crewai-tools==0.3.0
 langchain==0.1.20
@@ -44,7 +44,7 @@ jsonschema==4.22.0
 jsonschema-specifications==2023.12.1
 multidict==6.0.5
 numpy==1.26.4
-packaging==24.0
+packaging==23.2
 pandas==2.2.2
 peewee==3.17.5
 pydantic_core==2.18.2
