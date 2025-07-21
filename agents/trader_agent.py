@@ -1,10 +1,6 @@
-from crewai import Agent, LLM
+from crewai import Agent # Corrected import
+from llm import llm
 from tools.stock_research_tool import get_stock_price
-
-llm = LLM(
-    model="groq/llama-3.3-70b-versatile",
-    temperature=0
-)
 
 trader_agent = Agent(
     role="Strategic Stock Trader",
@@ -20,5 +16,4 @@ trader_agent = Agent(
     llm=llm,
     tools=[get_stock_price],
     verbose=True
-
 )
