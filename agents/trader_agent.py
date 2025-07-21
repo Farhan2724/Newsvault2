@@ -1,4 +1,5 @@
 from crewai import Agent, LLM
+from tools.stock_research_tool import get_stock_price
 
 llm = LLM(
     model="groq/llama-3.3-70b-versatile",
@@ -17,7 +18,7 @@ trader_agent = Agent(
         "that optimize returns and reduce risk."
     ),
     llm=llm,
-    tools=[],
+    tools=[get_stock_price],
     verbose=True
 
 )
