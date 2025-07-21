@@ -59,17 +59,4 @@ async def get_profile(user_id: str):
 async def get_personalized_news(user_id: str):
     profile = profile_manager.get_profile(user_id)
     if not profile:
-        raise HTTPException(status_code=404, detail="Profile not found")
-
-    try:
-        news_crew = NewsAICrew(profile)
-        result = news_crew.generate_news_digest()
-        return {"success": True, "news_digest": result}
-    except Exception as e:
-        print(f"Error generating news digest: {e}") # Added for better logging
-        raise HTTPException(status_code=500, detail=f"Internal Server Error: {e}")
-
-# This block allows Render to run the app.
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+        raise HTTPException(status_code=404, detail="Profile not found.")
