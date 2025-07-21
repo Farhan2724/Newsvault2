@@ -1,13 +1,12 @@
 # agents/news_curator_agent.py
-from crewai import Agent
+from crewai import Agent # Corrected import
+from llm import llm
 from tools.news_research_tool import get_financial_news, get_sector_news, get_stock_specific_news
 from user_profile import UserProfile, ExperienceLevel, RiskAppetite
-from llm import llm # Import the centralized llm instance
 
 def create_news_curator_agent(user_profile: UserProfile) -> Agent:
     """Create a personalized news curator agent based on user profile"""
     
-    # Customize agent based on experience level
     if user_profile.experience_level == ExperienceLevel.BEGINNER:
         role = "Beginner-Friendly Financial News Curator"
         backstory = (
@@ -30,7 +29,6 @@ def create_news_curator_agent(user_profile: UserProfile) -> Agent:
             "providing relevant insights based on investment goals and risk tolerance."
         )
     
-    # Create goal based on user preferences
     goal = (
         f"Curate and summarize financial news that aligns with {user_profile.investment_horizon.value} "
         f"investment strategy, focusing on {', '.join(user_profile.industry_preferences)} sectors, "
@@ -47,7 +45,6 @@ def create_news_curator_agent(user_profile: UserProfile) -> Agent:
         verbose=True
     )
 
-# agents/news_summarizer_agent.py
 summarizer_agent = Agent(
     role="Financial News Summarizer",
     goal=(
@@ -64,7 +61,6 @@ summarizer_agent = Agent(
     verbose=True
 )
 
-# agents/relevance_scorer_agent.py
 relevance_scorer_agent = Agent(
     role="Investment Relevance Analyst",
     goal=(
