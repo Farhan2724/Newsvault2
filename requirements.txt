@@ -1,17 +1,31 @@
+# Core FastAPI framework
 fastapi==0.111.0
-uvicorn==0.29.0
+uvicorn[standard]==0.29.0
 pydantic==2.7.1
+starlette==0.37.2
+
+# Environment and HTTP
 python-dotenv==1.0.1
 requests==2.32.3
 python-multipart==0.0.9
 
-# LangChain and CrewAI ecosystem
+# CrewAI and LangChain Ecosystem
+crewai==0.35.8
+crewai-tools==0.3.0
 langchain==0.2.1
 langchain-core==0.2.3
 langchain-community==0.2.1
 langchain-groq==0.1.5
-crewai==0.35.8
-crewai-tools==0.3.0
+langchain-text-splitters==0.2.0
+langsmith==0.1.57
+
+# Critical Sub-dependencies
+aiohttp==3.9.5
+greenlet==3.0.3
+numpy==1.26.4
+SQLAlchemy==2.0.30
+tenacity==8.4.1
+typing-extensions==4.12.2
 
 # Other dependencies
 yfinance==0.2.40
