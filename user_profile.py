@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import List, Dict, Any
 from enum import Enum
 import json
+import os
 
 class InvestmentFrequency(Enum):
     DAILY = "daily"
@@ -62,11 +63,18 @@ class UserProfile:
         )
 
 class UserProfileManager:
-    def __init__(self, storage_path: str = "user_profiles.json"):
+    # Use the /tmp directory for writable storage in Vercel
+    def __init__(self, storage_path: str = "/tmp/user_profiles.json"):
         self.storage_path = storage_path
         self.profiles = self._load_profiles()
     
     def _load_profiles(self) -> Dict[str, UserProfile]:
+        # Create the file if it doesn't exist
+        if not os.path.exists(self.storage_path):
+            with open(self.storage_path, 'w') as f:
+                json.dump({}, f)
+            return {}
+        
         try:
             with open(self.storage_path, 'r') as f:
                 data = json.load(f)
@@ -74,7 +82,7 @@ class UserProfileManager:
                     user_id: UserProfile.from_dict(profile_data)
                     for user_id, profile_data in data.items()
                 }
-        except FileNotFoundError:
+        except (FileNotFoundError, json.JSONDecodeError):
             return {}
     
     def _save_profiles(self):
