@@ -1,12 +1,8 @@
 # agents/news_curator_agent.py
-from crewai import Agent, LLM
+from crewai import Agent
 from tools.news_research_tool import get_financial_news, get_sector_news, get_stock_specific_news
 from user_profile import UserProfile, ExperienceLevel, RiskAppetite
-
-llm = LLM(
-    model="groq/llama-3.3-70b-versatile",
-    temperature=0.3
-)
+from llm import llm # Import the centralized llm instance
 
 def create_news_curator_agent(user_profile: UserProfile) -> Agent:
     """Create a personalized news curator agent based on user profile"""
