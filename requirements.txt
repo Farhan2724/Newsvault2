@@ -1,2 +1,9 @@
-fastapi==0.104.1
-uvicorn==0.24.0
+crewai==0.35.8
+crewai-tools==0.3.0
+python-dotenv==1.0.1
+yfinance==0.2.40
+fastapi==0.111.0
+uvicorn==0.29.0
+requests==2.32.3
+python-multipart==0.0.9
+langchain-groq==0.1.3
