@@ -1,12 +1,6 @@
-from crewai import Agent, LLM
-
+from crewai import Agent
 from tools.stock_research_tool import get_stock_price
-
-
-llm = LLM(
-    model="groq/llama-3.3-70b-versatile",
-    temperature=0
-)
+from llm import llm # Import the centralized llm instance
 
 analyst_agent = Agent(
     role="Financial Market Analyst",
@@ -17,6 +11,6 @@ analyst_agent = Agent(
                  "stock performance using live market indicators."),
     llm=llm,
     tools=[get_stock_price],
-    verbose=True
-
+    verbose=True,
+    allow_delegation=False
 )
