@@ -41,7 +41,7 @@ async def get_questionnaire():
 async def create_profile(profile_data: ProfileCreationRequest):
     try:
         profile = questionnaire.create_profile_from_responses(
-            profile_data.user_id, 
+            profile_data.user_id,
             profile_data.responses
         )
         return {"success": True, "profile": profile.to_dict()}
@@ -60,7 +60,7 @@ async def get_personalized_news(user_id: str):
     profile = profile_manager.get_profile(user_id)
     if not profile:
         raise HTTPException(status_code=404, detail="Profile not found")
-    
+
     try:
         news_crew = NewsAICrew(profile)
         result = news_crew.generate_news_digest()
