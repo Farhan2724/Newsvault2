@@ -1,5 +1,5 @@
 import yfinance as yf
-from crewai_tools import tool # Corrected import
+from crewai_tools import tool
 
 @tool("Live Stock Information Tool")
 def get_stock_price(stock_symbol: str) -> str:
