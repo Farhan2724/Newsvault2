@@ -10,7 +10,6 @@ requests==2.32.3
 python-multipart==0.0.9
 
 # CrewAI and LangChain Ecosystem
-crewai==0.35.8
 crewai-tools==0.3.0
 langchain==0.1.20
 langchain-core==0.1.52
